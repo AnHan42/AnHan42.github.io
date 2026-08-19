@@ -1,23 +1,8 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Outreach | Simon Gravelle</title><link>https://simongravelle.github.io/tag/outreach.html</link><atom:link href="https://simongravelle.github.io/tag/outreach/index.xml" rel="self" type="application/rss+xml"/><description>Outreach</description><generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Fri, 23 Jan 2026 00:00:00 +0000</lastBuildDate><image><url>https://simongravelle.github.io/media/logo_hu5025324560545862583.png</url><title>Outreach</title><link>https://simongravelle.github.io/tag/outreach.html</link></image><item><title>LIPhy's photo exhibition</title><link>https://simongravelle.github.io/news/2026-exposition.html</link><pubDate>Fri, 23 Jan 2026 00:00:00 +0000</pubDate><guid>https://simongravelle.github.io/news/2026-exposition.html</guid><description>&lt;p>Transport of water molecules in a microporous polymer&lt;/p>
-&lt;p>Molecular dynamics simulation showing water molecules (in red and white) adsorbed within a polymer with molecular-sized pores (in gray). These simulations are used to study the collective transport properties of the molecules, and the results can be compared with those obtained from neutron scattering experiments&lt;/p></description></item><item><title>LAMMPS Tutorials has just been published</title><link>https://simongravelle.github.io/news/2025-lammps-tutorials.html</link><pubDate>Wed, 01 Oct 2025 00:00:00 +0000</pubDate><guid>https://simongravelle.github.io/news/2025-lammps-tutorials.html</guid><description>&lt;p>The content of lammpstutorials.github.io has just been published in my favorite
-journal, the Living Journal of Computational Molecular Science (LiveCoMS).&lt;/p>
-&lt;p>LiveCoMS is a diamond open access journal (free to read and free to publish)
-that allows articles to evolve over time with updated versions. This was the
-ideal choice for these LAMMPS tutorials, which have been constantly growing
-and improving since their creation about 5 years ago.&lt;/p>
-&lt;p>I’m also glad to see that the number of contributors to LAMMPS tutorials
-keeps expanding, now even including members of the LAMMPS development team.&lt;/p>
-&lt;p>See the content here: &lt;a href="https://livecomsjournal.org/index.php/livecoms/article/view/v6i1e3037" target="_blank" rel="noopener">https://livecomsjournal.org/index.php/livecoms/article/view/v6i1e3037&lt;/a>&lt;/p></description></item><item><title>Focus on Learn Molecular Simulation with Python</title><link>https://simongravelle.github.io/news/2024-mdcourse.html</link><pubDate>Sun, 01 Sep 2024 00:00:00 +0000</pubDate><guid>https://simongravelle.github.io/news/2024-mdcourse.html</guid><description>&lt;p>&lt;a href="https://mdcourse.github.io/" target="_blank" rel="noopener">Learn Molecular Simulations with Python&lt;/a>
-is designed as a step-by-step guide to developing simple Python code that
-includes the basic functionalities of molecular dynamics and Monte Carlo
-simulations. The main goal is to help users understand the fundamentals of
-molecular simulation algorithms. The scripts will also be used for small
-scientific projects. In particular, some of the earliest results obtained
-from molecular simulations, including the pioneering works by Metropolis,
-Rosenbluth, Wood, and Parker in the 1950s, will be re-explored.&lt;/p>
-&lt;p>If you want to take part in the project, reach out to me on
-&lt;a href="https://github.com/mdcourse" target="_blank" rel="noopener">GitHub&lt;/a>. I am looking for contributors
-(co-writers, testers).&lt;/p>
-&lt;p>This project has received funding from the European Union&amp;rsquo;s Horizon 2020
-research and innovation programme under the Marie Skłodowska-Curie grant
-agreement No 101065060.&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Outreach | Anika Hannemann</title><link>https://AnHan42.github.io/tag/outreach.html</link><atom:link href="https://AnHan42.github.io/tag/outreach/index.xml" rel="self" type="application/rss+xml"/><description>Outreach</description><generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 23 Mar 2026 00:00:00 +0000</lastBuildDate><image><url>https://AnHan42.github.io/media/logo_hu5025324560545862583.png</url><title>Outreach</title><link>https://AnHan42.github.io/tag/outreach.html</link></image><item><title>Keynote: Engineering Responsible AI Systems</title><link>https://AnHan42.github.io/news/2025_altai.html</link><pubDate>Mon, 23 Mar 2026 00:00:00 +0000</pubDate><guid>https://AnHan42.github.io/news/2025_altai.html</guid><description>&lt;p>On March 23, 2026, I gave a keynote titled &amp;ldquo;Engineering Responsible AI Systems&amp;rdquo;
+at the SCRAI session &amp;ldquo;Building AI We Can Trust&amp;rdquo;, part of the After The Algorithm
+festival in Zurich. The session brought together business leaders, policymakers,
+and AI builders to explore responsible AI across five lenses: business,
+technology, legal, collaboration, and design. I was taking on the technical perspective discussing how to integrate RAI in the ML workflow. Feel free to reach out when you&amp;rsquo;re interested in how to implement responsible AI practices into your lifecycle!&lt;/p></description></item><item><title>Talk: Privacy of AI Applications in Smartphones</title><link>https://AnHan42.github.io/news/2025_taicircle.html</link><pubDate>Wed, 03 Dec 2025 00:00:00 +0000</pubDate><guid>https://AnHan42.github.io/news/2025_taicircle.html</guid><description>&lt;p>On December 3, 2025, I presented at the Trustworthy AI Circle hosted by SCRAI
+at ZHAW Digital Workspace in Zurich. The session focused on privacy risks of
+AI applications in smartphones, discussing how everyday mobile tools collect,
+process, and potentially expose user data.&lt;/p></description></item></channel></rss>
