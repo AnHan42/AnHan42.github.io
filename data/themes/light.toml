@@ -3,14 +3,14 @@ name = "Light"
 
 [light]
   # Primary
-  primary = "hsl(212, 100%, 40%)"  # Consistent blue accent as in GitHub Light
+  primary = "hsl(250, 85%, 58%)"  # Modern indigo/violet accent
 
   # Menu
-  menu_primary = "rgb(255, 255, 255)"  # White background for menu
-  menu_text = "rgba(36, 41, 46, 0.6)"  # Muted dark text for menu
-  menu_text_active = "rgba(36, 41, 46, 1)"  # Dark active text
-  menu_title = "#24292e"  # GitHub Light's dark gray
+  menu_primary = "rgba(255, 255, 255, 0.90)"  # Semi-transparent for glass effect
+  menu_text = "rgba(30, 35, 44, 0.60)"  # Softer muted text
+  menu_text_active = "rgba(30, 35, 44, 1)"  # Strong active text
+  menu_title = "#1e232c"  # Deep neutral
 
   # Home sections
-  home_section_odd = "rgb(246, 248, 250)"  # Slightly darker section
-  home_section_even = "rgb(255, 255, 255)"  # White, alternating
+  home_section_odd = "rgb(249, 250, 254)"  # Faint indigo tint, very subtle
+  home_section_even = "rgb(255, 255, 255)"  # Pure white, alternating

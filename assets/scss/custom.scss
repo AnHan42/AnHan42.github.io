@@ -1,109 +1,412 @@
-/* Custom css - inspired by nickballousite */
+/* Custom css */
 
+/* =====================
+   GOOGLE FONTS
+   ===================== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Syne:wght@700;800&display=swap');
+
+/* =====================
+   VARIABLES
+   ===================== */
+$transition-base: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+$transition-lift: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+$radius-card: 12px;
+$radius-btn: 8px;
+
+/* Violet palette — hardcoded so colours never depend on CSS variable resolution */
+$violet:       #5739ef; /* light-mode primary: hsl(250, 85%, 58%) */
+$violet-light: #a893f8; /* dark-mode primary: lighter, readable on dark bg */
+
+/* =====================
+   KEYFRAME ANIMATIONS
+   ===================== */
 @keyframes slide-from-right {
-  0% {
-    transform: translateX(150%);
-  }
-  100% {
-    transform: translateX(0%);
-  }
+  from { transform: translateX(150%); }
+  to   { transform: translateX(0); }
 }
 
 @keyframes slide-from-far-right {
-  0% {
-    transform: translateX(1000%);
-  }
-  100% {
-    transform: translateX(0%);
-  }
+  from { transform: translateX(1000%); }
+  to   { transform: translateX(0); }
 }
 
 @keyframes slide-from-left {
-  0% {
-    transform: translateX(-150%);
-  }
-  100% {
-    transform: translateX(0%);
-  }
+  from { transform: translateX(-150%); }
+  to   { transform: translateX(0); }
 }
 
 @keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-/*
-.btn-download::before {
-  font-family: fontAwesome;
-  content: "\f019\00a0";
-} 
-*/ 
-
-.background-img {
-    pointer-events: none;
-    cursor: default;
+@keyframes wheel-up-down {
+  0%   { margin-top: 2px;  opacity: 0; }
+  30%  { opacity: 1; }
+  100% { margin-top: 10px; opacity: 0; }
 }
 
-.article-container {
-  max-width: 850px;
-  padding: 0 20px 0 20px;
-  margin: 0 auto 0 auto;
-  font-size: 18px;
-  text-align: justify;
+/* =====================
+   GLOBAL / TYPOGRAPHY
+   ===================== */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.01em;
 }
 
-.docs-toc {
-  text-align: left;
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.025em;
 }
 
-#TableOfContents li a {
-  line-height: 20px
+h2, h3 {
+  margin-top: 1em;
+  margin-bottom: 0.4em;
+}
+
+code, pre, kbd, samp {
+  font-family: 'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+  font-size: 0.875em;
+}
+
+/* =====================
+   NAVBAR
+   ===================== */
+.navbar {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.07);
+  transition: $transition-base;
+}
+
+.navbar-brand {
+  font-weight: 600;
+  letter-spacing: -0.02em;
 }
 
 .nav-link {
   padding: 10px 0 0 0;
   margin: 10px 0;
+  font-weight: 500;
+  font-size: 0.9rem;
+  letter-spacing: 0.01em;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: currentColor;
+    border-radius: 1px;
+    transition: width 0.2s ease;
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
 }
 
-/* article styling */
+/* =====================
+   SECTION HEADINGS
+   ===================== */
+/* Match the label style of the bio headings: uppercase, tracked, violet */
+.section-heading h1 {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: $violet;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.45rem;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, $violet 0%, transparent 100%);
+    border-radius: 2px;
+  }
+}
+
+/* =====================
+   HERO / ABOUT SECTION
+   ===================== */
+/* First home section (about widget) gets a subtle gradient wash */
+.home-section:first-of-type {
+  background: linear-gradient(135deg, rgba(99, 74, 235, 0.06) 0%, rgba(139, 92, 246, 0.04) 50%, rgba(255, 255, 255, 0) 100%) !important;
+}
+
+/* =====================
+   CARDS
+   ===================== */
+.card {
+  border-radius: $radius-card;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: $transition-lift;
+
+  &:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.09);
+    transform: translateY(-2px);
+  }
+}
+
+.card-simple {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  align-items: flex-start;
+  padding: 1.25rem 1.25rem 1.25rem 1.5rem;
+  border-radius: $radius-card;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  border-left: 3px solid $violet;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  transition: $transition-lift;
+  margin-bottom: 1rem;
+
+  &:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+  }
+
+  .article-banner {
+    width: 180px;
+    height: 120px;
+    object-fit: cover;
+    flex-shrink: 0;
+    order: 2;
+    border-radius: 8px;
+  }
+}
+
+/* =====================
+   ABOUT SECTION
+   ===================== */
+
+/* Violet glow ring on avatar */
+#profile .avatar {
+  box-shadow: 0 0 0 4px rgba(87, 57, 239, 0.30), 0 8px 32px rgba(87, 57, 239, 0.15);
+  transition: $transition-lift;
+
+  &:hover {
+    box-shadow: 0 0 0 5px rgba(87, 57, 239, 0.55), 0 12px 40px rgba(87, 57, 239, 0.25);
+    transform: scale(1.03);
+  }
+}
+
+/* Name: Syne — geometric, edgy, modern display sans */
+.portrait-title h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: 2.1rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-top: 1.2rem;
+  margin-bottom: 0.4rem;
+  color: inherit;
+}
+
+/* Role: pill badge in violet */
+.role-title {
+  display: inline-block;
+  font-size: 0.78rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: $violet !important;
+  background: rgba(87, 57, 239, 0.07);
+  border: 1px solid rgba(87, 57, 239, 0.25);
+  border-radius: 20px;
+  padding: 0.22rem 0.85rem !important;
+  margin-bottom: 0.5rem;
+  opacity: 1 !important;
+}
+
+.dark .role-title {
+  background: rgba(168, 147, 248, 0.12);
+  border-color: rgba(168, 147, 248, 0.30);
+}
+
+/* Organisation links in violet — uses CSS var so adapts to dark mode */
+.portrait-title h3:not(.role-title) {
+  font-size: 0.9rem;
+  font-weight: 400;
+  opacity: 1;
+  letter-spacing: 0;
+  margin: 0.1rem 0;
+
+  a {
+    color: $violet;
+    text-decoration: none;
+    transition: $transition-base;
+
+    &:hover {
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+  }
+}
+
+/* Social icons in violet — $violet gives lighter tone in dark mode */
+.network-icon {
+  padding: 0;
+  margin-top: 0.5rem;
+
+  li a {
+    display: inline-block;
+    color: $violet;
+    transition: $transition-lift;
+
+    &:hover {
+      opacity: 1;
+      transform: translateY(-3px);
+    }
+  }
+}
+
+/* Bio section headings (### About Me, ### What I Share, etc.) */
+.main-content h3 {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: $violet;
+  margin-top: 1.5rem;
+  margin-bottom: 0.45rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid rgba(87, 57, 239, 0.18);
+}
+
+.dark .main-content h3 {
+  border-bottom-color: rgba(168, 147, 248, 0.25);
+}
+
+/* Body text in the bio matches the Inter heading font weight and feel */
+.main-content p,
+.main-content ul,
+.main-content li {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+/* =====================
+   DARK MODE VIOLET OVERRIDES
+   ===================== */
+/* Switch all violet accents to the lighter $violet-light in dark mode */
+.dark {
+  .section-heading h1 {
+    color: $violet-light;
+    &::after { background: linear-gradient(90deg, $violet-light 0%, transparent 100%); }
+  }
+
+  .card-simple { border-left-color: $violet-light; }
+
+  .role-title {
+    color: $violet-light !important;
+  }
+
+  .portrait-title h3:not(.role-title) a { color: $violet-light; }
+
+  .network-icon li a { color: $violet-light; }
+
+  .main-content h3 {
+    color: $violet-light;
+    border-bottom-color: rgba(168, 147, 248, 0.25);
+  }
+
+  .btn-links .btn:hover {
+    color: $violet-light;
+    border-color: $violet-light;
+  }
+}
+
+/* =====================
+   ARTICLE / CONTENT
+   ===================== */
+.article-container {
+  max-width: 850px;
+  padding: 0 24px;
+  margin: 0 auto;
+  font-size: 17px;
+  line-height: 1.75;
+  text-align: justify;
+}
+
 .article {
-    p a {
+  p a {
     text-decoration: none;
     padding: 1.5px;
     border-radius: 3px;
   }
-  
-  /* Change article title formatting without changing normal h1 headings */
+
+  /* Article title left-aligned */
   .pt-3 h1 {
     text-align: left;
   }
-  
-  /* The opposite; change post h1 without changing page title formatting */
-  .article-style h1:after {
-    content:' ';
-    display:block;
-    border:.1rem solid #d0d0d0;
-    border-radius:4px;
-    -webkit-border-radius:4px;
-    -moz-border-radius:4px;
-    box-shadow:inset 0 1px 1px rgba(0, 0, 0, .05);
-    -webkit-box-shadow:inset 0 1px 1px rgba(0, 0, 0, .05);
-    -moz-box-shadow:inset 0 1px 1px rgba(0, 0, 0, .05);
+
+  /* h1 inside article body gets a subtle rule below */
+  .article-style h1::after {
+    content: ' ';
+    display: block;
+    border: 0.1rem solid rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.03);
+    margin-top: 0.5rem;
   }
-  
+
   li {
     text-align: left;
   }
-
 }
 
-h2, h3 {
-  margin-top: 1em;
-  margin-bottom: .4em;
+/* =====================
+   BUTTONS
+   ===================== */
+.btn {
+  border-radius: $radius-btn;
+  font-weight: 500;
+  font-size: 0.875rem;
+  letter-spacing: 0.01em;
+  transition: $transition-base;
+}
+
+.btn-page-header {
+  border-radius: 20px;
+  padding: 0.45rem 1.2rem;
+  font-weight: 500;
+}
+
+.btn-toolbar .btn.active {
+  box-shadow: 3px 3px 0 0 white !important;
+}
+
+.btn-links .btn {
+  padding: 0.3rem;
+  border-radius: 6px;
+
+  &:hover {
+    color: $violet;
+    border-color: $violet;
+    transform: translateY(-1px);
+  }
+}
+
+/* =====================
+   CODE BLOCKS
+   ===================== */
+pre {
+  border-radius: 10px;
 }
 
 .btn-copy-code {
@@ -112,69 +415,95 @@ h2, h3 {
   height: 25px;
   width: 9%;
   padding: 6px;
-  font-size: .75rem;
-  font-weight: 400;
+  font-size: 0.75rem;
+  font-weight: 500;
   background: #e978da;
   border: 0;
+  border-radius: 6px;
+
+  &::before {
+    font-family: fontAwesome;
+    content: "\f0c5\00a0";
+  }
 }
 
-.btn-copy-code::before {
-  font-family: fontAwesome;
-  content: "\f0c5\00a0";
-}
-
-/* buttons */
-.btn-toolbar .btn.active  {
-  -webkit-box-shadow: 3px 3px 0 0 white !important;
-          box-shadow: 3px 3px 0 0 white !important;
-}
-
-.btn-links .btn {
-  padding: .3rem;
-}
-
-.btn-links .btn:hover {
-  padding: .3rem;
-  color: $sta-primary-dark;
-  border-color: $sta-primary-dark;
-}
-
-/* link styling */
-.card-text p a, .powered-by a {
+/* =====================
+   LINKS
+   ===================== */
+.card-text p a,
+.powered-by a {
   text-decoration: none;
 }
 
+/* =====================
+   TABLE OF CONTENTS
+   ===================== */
+.docs-toc {
+  text-align: left;
+  font-size: 0.875rem;
+  border-left: 2px solid rgba(0, 0, 0, 0.1);
+  padding-left: 1rem;
+}
 
-/* awards and experience cards */
-.card.experience.course.card-title {
+#TableOfContents li a {
+  line-height: 22px;
+  opacity: 0.7;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+/* =====================
+   EXPERIENCE / COURSE CARDS
+   ===================== */
+.card.experience.course .card-title {
   font-size: 1rem;
 }
 
 .card-subtitle.my-0.article-metadata,
 .card .text-muted.exp-meta {
-  font-size: .8rem;
+  font-size: 0.8rem;
   letter-spacing: 0 !important;
 }
 
 .course .card-body .card-text,
 .experience .card-body .card-text {
-  padding: .8rem 0.5rem .8rem 0 !important;
+  padding: 0.8rem 0.5rem 0.8rem 0 !important;
 }
 
-/* scrolling animation */
+/* Experience card images */
+.flex-w-experience-image-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.flex-w-experience-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.experience-image {
+  max-width: 60px;
+  margin-right: 10px;
+}
+
+/* =====================
+   SCROLL ANIMATION
+   ===================== */
 .mouse {
   width: 150px;
-  
 }
 
 .mouse-icon {
-   width: 25px;
-   height: 33px;
-   border: 3px solid white;
-   border-radius: 15px;
-   cursor: pointer;
-   display: inline-block;
-   text-align: center;
+  width: 25px;
+  height: 33px;
+  border: 3px solid white;
+  border-radius: 15px;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
 }
 
 .mouse-wheel {
@@ -184,100 +513,57 @@ h2, h3 {
   width: 3px;
   background-color: white;
   border-radius: 50%;
+  animation: 1.6s ease infinite wheel-up-down;
   -webkit-animation: 1.6s ease infinite wheel-up-down;
   -moz-animation: 1.6s ease infinite wheel-up-down;
-  animation: 1.6s ease infinite wheel-up-down;
 }
 
-//add images to experience cards
-.flex-w-experience-image-container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-.flex-w-experience-text {
-  display: flex;
-  flex-direction: column;
-}
-.experience-image {
-  max-width: 60px;
-  margin-right: 10px;
+/* =====================
+   MISC
+   ===================== */
+.background-img {
+  pointer-events: none;
+  cursor: default;
 }
 
-@-webkit-keyframes wheel-up-down {
-	0% {
-	    margin-top: 2px;
-	    opacity: 0;
-	}
-	30% {
-	    opacity: 1;
-	}
-	100% {
-	    margin-top: 10px;
-	    opacity: 0;
-	}
-}
-@-moz-keyframes wheel-up-down {
-	0% {
-	    margin-top: 2px;
-	    opacity: 0;
-	}
-	30% {
-	    opacity: 1;
-	}
-	100% {
-	    margin-top: 10px;
-	    opacity: 0;
-	}
-}
-@keyframes wheel-up-down {
-	0% {
-	    margin-top: 2px;
-	    opacity: 0;
-	}
-	30% {
-	    opacity: 1;
-	}
-	100% {
-	    margin-top: 10px;
-	    opacity: 0;
-	}
-}
-
-//custom css for awards
+/* =====================
+   ACCOMPLISHMENTS
+   ===================== */
 #accomplishments {
   .margin-top {
     margin-top: 20px;
   }
+
   .vertical-center {
     justify-content: center;
   }
+
   .card-title {
     font-size: 1.4rem;
+    font-weight: 600;
   }
+
   .card-subtitle {
     font-size: 1.2rem;
   }
-  .card {
 
+  .card {
     .init-hidden {
-        p {
-          max-height: 0;
-          transition: max-height 1s ease-out;
-          overflow: hidden;
-          margin-bottom: 0 !important;
-        }
-        
-        &.card-text {
-          padding: 0 !important;
-        }
+      p {
+        max-height: 0;
+        transition: max-height 1s ease-out;
+        overflow: hidden;
+        margin-bottom: 0 !important;
       }
-    
-    &:hover {
-    .init-hidden p {
+
+      &.card-text {
+        padding: 0 !important;
+      }
+    }
+
+    &:hover .init-hidden p {
       max-height: 1000px;
       transition: max-height 1s ease-in;
     }
   }
-}
 }

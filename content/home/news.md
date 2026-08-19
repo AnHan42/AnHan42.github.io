@@ -11,8 +11,8 @@ content:
   filter_button:
     - name: All
       tag: '*'
-    - name: Job
-      tag: Job
+    - name: Research
+      tag: Research
     - name: Personal
       tag: Personal
     - name: Outreach
@@ -26,6 +26,6 @@ design:
   #   2 = Compact
   #   3 = Card
   #   5 = Showcase
-  view: 2
+  view: Showcase
   flip_alt_rows: false
 ---

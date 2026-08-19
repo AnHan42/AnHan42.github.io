@@ -1,10 +1,10 @@
 ---
 # Display name
-title: Simon Gravelle
+title: Anika Hannemann 
 
 # Full name (for SEO)
-first_name: Simon
-last_name: Gravelle
+first_name: Anika
+last_name: Hannemann
 
 # Status emoji
 status:
@@ -14,28 +14,30 @@ status:
 superuser: true
 
 # Role/position/tagline
-role: CNRS research scientist
+role: Research Scientist
 
 # Organizations/Affiliations to show in About widget
 organizations:
-  - name: LIPhy, Grenoble, France
-    url: https://liphy.univ-grenoble-alpes.fr/
-
+  - name: Swiss Centre for Responsible AI (SCRAI), Zürich, Switzerland
+    url: https://scrai.ch
+  - name: Zurich University of Applied Sciences
+    url: https://www.zhaw.ch/en/about-us/person/hamk
+    
 # Short bio (displayed in user profile at end of posts)
-bio: Computer physicist in soft matter and fluids at interfaces in LIPhy (UGA, CNRS), in Grenoble, France.
+bio: Scientist and Research Lead at Swiss Centre for Responsible AI and Zurich University of Applied Sciences. 
 
 # Interests to show in About widget
 interests:
-  - Soft Matter
-  - Fluid at interface
-  - Computer simulations
+  - Responsible AI
+  - AI Privacy & Security
+  - Agentic AI
 
 # Education to show in About widget
 education:
   courses:
-    - course: PhD in Nanofluidics
-      institution: University of Lyon (France)
-      year: 2015
+    - course: PhD in AI Privacy
+      institution: University of Leipzig (Germany)
+      year: 2025
 
 # Social/Academic Networking
 # For available icons, see: https://wowchemy.com/docs/getting-started/page-builder/#icons
@@ -45,46 +47,35 @@ education:
 social:
   - icon: envelope
     icon_pack: fas
-    link: mailto:simon.gravelle@cnrs.fr
+    link: mailto:anikahannemann@proton.me
   - icon: github
     icon_pack: fab
-    link: https://github.com/simongravelle
+    link: https://github.com/AnHan42
     display:
       header: true
-  - icon: mastodon
-    icon_pack: fab
-    link: https://mastodon.social/@simongravelle
-    label: Follow me on Mastodon
   - icon: graduation-cap
     icon_pack: fas
-    link: https://scholar.google.com/citations?user=9fD2JlYAAAAJ&hl
-  - icon: cv
-    icon_pack: ai
-    link: files/resume/resume-simon-gravelle.pdf
+    link: https://scholar.google.com/citations?user=gERJgU4AAAAJ&hl=de
+  - icon: linkedin
+    icon_pack: fab
+    link: https://www.linkedin.com/in/yourprofile
 
 highlight_name: true # Highlight the author in author lists? (true/false)
 ---
+<span style="display: block; height: 15px;"></span>
 
-### About me ##
 
-I am a computational physicist specializing in soft matter and fluids at interfaces, working at the LIPhy institute in Grenoble, France. In parallel, I serve as the Scientific Secretary of Section 08 of the National Committee.
-
-<a href="https://github.com/simongravelle" target="_blank" style="float: right">
-  <img src="https://raw.githubusercontent.com/simongravelle/simongravelle.github.io/refs/heads/main/static/img/water-in-polymer.png" alt="Water in polymer - molecular dynamics" width="200">
-</a>
+### About Me
+As a computer scientist rooted in AI privacy, I am expanding my focus to the interdisciplinary field of responsible AI to address societal challenges with technical solutions. Throughout my career, I have bridged gaps and facilitated collaborations in both academia and industry. I am eager to apply my expertise to projects that require understanding of both theory and domain knowledge.
 
 <span style="display: block; height: 8px;"></span>
 
-### What I share on <a href="https://github.com/simongravelle" target="_blank" style="text-decoration: none;">GitHub</a> ##
-
-  - Input files for molecular simulations
-  - Scripts for preparing and analyzing simulations
-  - Data and scripts from my recent publications
-
+### What I Share on This Page
+  - My work on trustworthy and private AI systems
+  - Opinions on AI policy, privacy, and responsible AI methods
+  - Open-source tools and research artifacts
+  
 <span style="display: block; height: 8px;"></span>
-
-### My primary outreach projects ##
-
-  - <a href="https://github.com/lammpstutorials" target="_blank" style="text-decoration: none;">LAMMPS tutorials</a> for LAMMPS beginners
-  - <a href="https://github.com/mdcourse" target="_blank" style="text-decoration: none;">Guides</a> for implementing molecular simulations from scratch
-
+### Reach Out to Me!
+  - I'm open to collaborations on AI security, privacy, and responsible AI.
+  - Feel free to contact me about research, teaching, or open-source projects.

@@ -24,8 +24,7 @@
 
 <div class="row">
   <div class="col-12 col-lg-4">
-    <div id="profile">
-      
+    <div id="profile" style="margin-top: 18px;">      
 
       {{ if site.Params.features.avatar.gravatar }}
       <img class="avatar {{if eq $avatar_shape "square"}}avatar-square{{else}}avatar-circle{{end}}" src="https://s.gravatar.com/avatar/{{ md5 $person.email }}?s=270')" alt="{{$person_page.Title}}">
@@ -45,11 +44,11 @@
               <rt>{{ $person.name_pronunciation }}</rt>
             </ruby>
           {{- else -}}
-            Simon Gravelle
+            Dr. Anika Hannemann
           {{- end -}}
         </h2>
 
-        {{ with $person.role }}<h3>{{ . | markdownify | emojify }}</h3>{{ end }}
+        {{ with $person.role }}<h3 class="role-title">{{ . | markdownify | emojify }}</h3>{{ end }}
 
         {{ range $person.organizations }}
         <h3>
