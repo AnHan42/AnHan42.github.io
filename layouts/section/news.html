@@ -1,0 +1,24 @@
+{{/* Local override of the default section list, for /news/ only.
+     Excludes Blog-tagged posts, matching the homepage News widget
+     (content/home/news.md), so the full News archive never shows
+     entries that belong under Blog instead. */}}
+{{- define "main" -}}
+
+{{ partial "page_header.html" . }}
+
+<div class="universal-wrapper">
+  {{ with .Content }}
+    <div class="article-style">{{ . }}</div>
+  {{ end }}
+
+  {{ $blog_posts := where .Pages "Params.tags" "intersect" (slice "Blog") }}
+  {{ $pages := .Pages | symdiff $blog_posts }}
+  {{ $paginator := .Paginate $pages }}
+  {{ range $index, $post := $paginator.Pages }}
+    {{ partial "functions/render_view" (dict "page" $ "item" . "view" ($.Params.view | default "compact") "index" $index) }}
+  {{end}}
+
+  {{ partial "pagination" . }}
+</div>
+
+{{- end -}}

@@ -5,7 +5,8 @@
 
 # Appearance (customize the theme from data/themes)
 appearance:
-  theme_day: light
+  # theme_day intentionally omitted: leaving only theme_night locks the site
+  # into dark mode permanently and hides the light/dark toggle (see README.txt).
   theme_night: persodark
   font: custom_font
   font_size: L
@@ -33,7 +34,7 @@ header:
     align: l
     show_logo: false
     show_language: false
-    show_day_night: true
+    show_day_night: false
     show_search: false
     highlight_active_link: true
 

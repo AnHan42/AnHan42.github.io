@@ -66,7 +66,7 @@ highlight_name: true # Highlight the author in author lists? (true/false)
 
 
 ### About Me
-As a computer scientist rooted in AI privacy, I am expanding my focus to the interdisciplinary field of responsible AI to address societal challenges with technical solutions. Throughout my career, I have bridged gaps and facilitated collaborations in both academia and industry. I am eager to apply my expertise to projects that require understanding of both theory and domain knowledge.
+I'm a computer scientist working on AI privacy. Lately I've been moving into responsible AI more broadly, because the interesting problems sit where technical work meets real societal questions. I've spent my career connecting people across academia and industry, and I like projects that need both solid theory and a real understanding of the domain.
 
 <span style="display: block; height: 8px;"></span>
 

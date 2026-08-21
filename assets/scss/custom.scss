@@ -3,7 +3,7 @@
 /* =====================
    GOOGLE FONTS
    ===================== */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Syne:wght@700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
 
 /* =====================
    VARIABLES
@@ -13,9 +13,14 @@ $transition-lift: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s c
 $radius-card: 12px;
 $radius-btn: 8px;
 
-/* Violet palette — hardcoded so colours never depend on CSS variable resolution */
-$violet:       #5739ef; /* light-mode primary: hsl(250, 85%, 58%) */
-$violet-light: #a893f8; /* dark-mode primary: lighter, readable on dark bg */
+/* Teal accent — used sparingly (links, section-heading rule, hover
+   states) rather than on every badge/icon, so colour stays understated.
+   Variable names kept as $violet/$violet-light to avoid renaming every
+   reference below; the colour itself is teal, not violet. */
+$violet:       #3e6680; /* light-mode accent (unused while dark-only): hsl(200, 35%, 34%) */
+$violet-light: #89e6e3; /* dark-mode accent: teal, hsl(178, 65%, 72%) */
+$neutral:       #6b7280; /* neutral gray for badges/icons — no colour tint */
+$neutral-light: #9aa4b2; /* neutral gray, dark-mode */
 
 /* =====================
    KEYFRAME ANIMATIONS
@@ -143,7 +148,7 @@ code, pre, kbd, samp {
    ===================== */
 /* First home section (about widget) gets a subtle gradient wash */
 .home-section:first-of-type {
-  background: linear-gradient(135deg, rgba(99, 74, 235, 0.06) 0%, rgba(139, 92, 246, 0.04) 50%, rgba(255, 255, 255, 0) 100%) !important;
+  background: linear-gradient(135deg, rgba(77, 203, 199, 0.06) 0%, rgba(100, 216, 212, 0.04) 50%, rgba(255, 255, 255, 0) 100%) !important;
 }
 
 /* =====================
@@ -193,39 +198,40 @@ code, pre, kbd, samp {
    ABOUT SECTION
    ===================== */
 
-/* Violet glow ring on avatar */
+/* Neutral glow ring on avatar — no colour tint, just depth */
 #profile .avatar {
-  box-shadow: 0 0 0 4px rgba(87, 57, 239, 0.30), 0 8px 32px rgba(87, 57, 239, 0.15);
+  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.10), 0 8px 32px rgba(0, 0, 0, 0.12);
   transition: $transition-lift;
 
   &:hover {
-    box-shadow: 0 0 0 5px rgba(87, 57, 239, 0.55), 0 12px 40px rgba(87, 57, 239, 0.25);
+    box-shadow: 0 0 0 5px rgba(0, 0, 0, 0.16), 0 12px 40px rgba(0, 0, 0, 0.18);
     transform: scale(1.03);
   }
 }
 
-/* Name: Syne — geometric, edgy, modern display sans */
+/* Name heading: same family as the rest of the site, just heavier weight,
+   so it doesn't clash with the body/section fonts. */
 .portrait-title h2 {
-  font-family: 'Syne', sans-serif;
-  font-size: 2.1rem;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  line-height: 1.1;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
   margin-top: 1.2rem;
   margin-bottom: 0.4rem;
   color: inherit;
 }
 
-/* Role: pill badge in violet */
+/* Role: neutral pill badge — no colour tint, just structure */
 .role-title {
   display: inline-block;
   font-size: 0.78rem !important;
   font-weight: 600 !important;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: $violet !important;
-  background: rgba(87, 57, 239, 0.07);
-  border: 1px solid rgba(87, 57, 239, 0.25);
+  color: $neutral !important;
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 20px;
   padding: 0.22rem 0.85rem !important;
   margin-bottom: 0.5rem;
@@ -233,8 +239,9 @@ code, pre, kbd, samp {
 }
 
 .dark .role-title {
-  background: rgba(168, 147, 248, 0.12);
-  border-color: rgba(168, 147, 248, 0.30);
+  color: $neutral-light !important;
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.18);
 }
 
 /* Organisation links in violet — uses CSS var so adapts to dark mode */
@@ -257,20 +264,29 @@ code, pre, kbd, samp {
   }
 }
 
-/* Social icons in violet — $violet gives lighter tone in dark mode */
+/* Social icons: neutral gray, colour is reserved for links/headings */
 .network-icon {
   padding: 0;
   margin-top: 0.5rem;
 
   li a {
     display: inline-block;
-    color: $violet;
+    color: $neutral;
     transition: $transition-lift;
 
     &:hover {
+      color: $violet;
       opacity: 1;
       transform: translateY(-3px);
     }
+  }
+}
+
+.dark .network-icon li a {
+  color: $neutral-light;
+
+  &:hover {
+    color: $violet-light;
   }
 }
 
@@ -284,11 +300,11 @@ code, pre, kbd, samp {
   margin-top: 1.5rem;
   margin-bottom: 0.45rem;
   padding-bottom: 0.3rem;
-  border-bottom: 1px solid rgba(87, 57, 239, 0.18);
+  border-bottom: 1px solid rgba(77, 203, 199, 0.18);
 }
 
 .dark .main-content h3 {
-  border-bottom-color: rgba(168, 147, 248, 0.25);
+  border-bottom-color: rgba(100, 216, 212, 0.25);
 }
 
 /* Body text in the bio matches the Inter heading font weight and feel */
@@ -312,17 +328,11 @@ code, pre, kbd, samp {
 
   .card-simple { border-left-color: $violet-light; }
 
-  .role-title {
-    color: $violet-light !important;
-  }
-
   .portrait-title h3:not(.role-title) a { color: $violet-light; }
-
-  .network-icon li a { color: $violet-light; }
 
   .main-content h3 {
     color: $violet-light;
-    border-bottom-color: rgba(168, 147, 248, 0.25);
+    border-bottom-color: rgba(100, 216, 212, 0.25);
   }
 
   .btn-links .btn:hover {
@@ -387,8 +397,63 @@ code, pre, kbd, samp {
   font-weight: 500;
 }
 
-.btn-toolbar .btn.active {
-  box-shadow: 3px 3px 0 0 white !important;
+/* Filter toolbar (News: All / Research / Personal / Outreach). Theme
+   default is a solid, fully-saturated fill on every button, which reads as
+   very bright against a dark background. Restyled as soft pill chips: a
+   faint tint at rest, filled only for the active filter, and no white
+   drop-shadow. */
+.btn-toolbar .btn {
+  border-radius: 20px !important;
+}
+
+/* Give each pill chip breathing room instead of the theme's default
+   edge-to-edge button-group spacing (-1px margin between buttons). */
+.btn-toolbar .btn-group {
+  gap: 10px;
+}
+
+.btn-toolbar .btn-group > .btn {
+  margin-left: 0 !important;
+}
+
+.btn-toolbar .btn.btn-primary {
+  background-color: rgba(62, 102, 128, 0.08) !important;
+  border: 1px solid rgba(62, 102, 128, 0.3) !important;
+  color: $violet !important;
+  box-shadow: none !important;
+}
+
+.btn-toolbar .btn.btn-primary:hover,
+.btn-toolbar .btn.btn-primary:focus {
+  background-color: rgba(62, 102, 128, 0.16) !important;
+  border-color: rgba(62, 102, 128, 0.45) !important;
+}
+
+.btn-toolbar .btn.btn-primary:active,
+.btn-toolbar .btn.btn-primary.active {
+  background-color: $violet !important;
+  border-color: $violet !important;
+  color: #fff !important;
+  box-shadow: none !important;
+}
+
+.dark .btn-toolbar .btn.btn-primary {
+  background-color: rgba(137, 230, 227, 0.1) !important;
+  border-color: rgba(137, 230, 227, 0.3) !important;
+  color: $violet-light !important;
+}
+
+.dark .btn-toolbar .btn.btn-primary:hover,
+.dark .btn-toolbar .btn.btn-primary:focus {
+  background-color: rgba(137, 230, 227, 0.18) !important;
+  border-color: rgba(137, 230, 227, 0.45) !important;
+}
+
+.dark .btn-toolbar .btn.btn-primary:active,
+.dark .btn-toolbar .btn.btn-primary.active {
+  background-color: $violet-light !important;
+  border-color: $violet-light !important;
+  color: #0b0f14 !important;
 }
 
 .btn-links .btn {

@@ -3,23 +3,27 @@ name = "dark"
 
 [dark]
   # Primary
-  primary = "hsl(250, 85%, 70%)"  # Lighter indigo/violet for dark-mode readability
+  primary = "hsl(178, 55%, 55%)"  # Teal accent for dark-mode readability
 
   # General Text
   text = "rgba(215, 222, 230, 1)"  # Crisp off-white text
 
+  # Base page background (used by modals, search overlay, pagination, and
+  # as the body fallback) — kept in step with the home section colours
+  # below so nothing reads as a lighter "box" against the page.
+  background = "rgb(8, 10, 15)"
+
   # Menu
-  menu_primary = "rgba(9, 12, 18, 0.90)"  # Deep glass dark background
+  menu_primary = "rgba(8, 10, 15, 0.90)"  # Deep glass dark background
   menu_text = "rgba(215, 222, 230, 0.60)"  # Muted off-white
   menu_text_active = "rgba(215, 222, 230, 1)"  # Bright active text
   menu_title = "#d7dee6"  # Crisp off-white for titles
 
   # Links
-  link = "hsl(217, 91%, 68%)"  # Bright readable blue
-  link_hover = "hsl(217, 100%, 75%)"  # Even brighter on hover
+  link = "hsl(178, 60%, 62%)"  # Teal accent, readable on dark
+  link_hover = "hsl(178, 65%, 72%)"  # Lighter on hover
   link_decoration = "none"
 
   # Home sections
-  home_section_odd = "rgb(16, 20, 28)"  # Deep blue-tinted dark
-  home_section_even = "rgb(9, 12, 18)"  # Near-black base
-
+  home_section_odd = "rgb(13, 17, 23)"  # Deep blue-tinted dark
+  home_section_even = "rgb(8, 10, 15)"  # Near-black base

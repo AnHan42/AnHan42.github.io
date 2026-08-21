@@ -1,0 +1,138 @@
+{{/* Portfolio Widget */}}
+
+{{/* Initialise */}}
+{{ $ := .root }}
+{{ $st := .page }}
+{{ $columns := $st.Params.design.columns | default "2" }}
+{{ $view := $st.Params.design.view | default "masonry" }}
+
+{{/* Require Isotope */}}
+{{ $.Page.Store.Set "has_isotope" true }}
+
+{{/* Query (moved up from below, local change: computed before the filter
+     toolbar so we know up front whether the list will be capped). */}}
+{{ $query := site.Pages }}
+
+{{/* Filters */}}
+{{ with $st.Params.content.page_type }}
+  {{/* Legacy filter, superseded by `filters.folders` */}}
+  {{ $query = where $query "Type" . }}
+{{ end }}
+{{ with $st.Params.content.filters.folders }}
+  {{ $query = where $query "Section" "in" . }}
+{{ end }}
+{{ with $st.Params.content.filters.tags }}
+  {{ $query = where $query "Params.tags" "intersect" . }}
+{{ end }}
+{{ with $st.Params.content.filters.exclude_tags }}
+  {{ $query = $query | symdiff (where site.Pages "Params.tags" "intersect" .) }}
+{{ end }}
+{{ with ($st.Params.content.filters.kinds | default (slice "page")) }}
+  {{ $query = where $query "Kind" "in" . }}
+{{ end }}
+
+{{/* Sort */}}
+{{ $sort_by := $st.Params.content.sort_by | default "Date" }}
+{{ $sort_ascending := $st.Params.content.sort_ascending | default (eq $st.Params.content.order "asc") | default false }}
+{{ $sort_order := cond $sort_ascending "asc" "desc" }}
+{{ $query = sort $query $sort_by $sort_order }}
+
+{{/* Limit (local addition): content.count caps how many items render
+     here. count: 0 or unset = no limit, matching the original theme
+     behaviour. When a filter toolbar is also defined, the full list stays
+     in the DOM so category buttons (e.g. Research/Personal/Outreach) can
+     reveal every matching item; only the default "All" view is capped, via
+     a dedicated "js-default-cap" class applied to the N most recent items
+     below. Without a toolbar, the query itself is capped as before. A
+     "See older" link still appears when capped, pointing at the section
+     archive for the complete, unfiltered-by-count list. */}}
+{{ $has_filter_toolbar := and $st.Params.content.filter_button (gt (len $st.Params.content.filter_button) 1) }}
+{{ $full_count := len $query }}
+{{ $items_count := $st.Params.content.count | default 0 }}
+{{ $is_capped := and (gt $items_count 0) (gt $full_count $items_count) }}
+{{ if and (gt $items_count 0) (not $has_filter_toolbar) }}
+  {{ $query = first $items_count $query }}
+{{ end }}
+
+<div class="col-12 {{if eq $columns "2"}}col-lg-8{{end}}">
+
+  {{ with $st.Content }}{{ . }}{{ end }}
+
+  {{ if $has_filter_toolbar }}
+
+    {{ $filter_default := default (int $st.Params.content.filter_default) 0 }}
+
+    {{/* Parse default filter tag from front matter in the form of either tag name or CSS class name. */}}
+    {{ $default_filter_tag_raw := (index $st.Params.content.filter_button ($filter_default)).tag }}
+    {{ $default_filter_tag := printf ".js-id-%s" (replace $default_filter_tag_raw " " "-") }}
+    {{ if or (eq (substr $default_filter_tag_raw 0 1) "*") (eq (substr $default_filter_tag_raw 0 1) ".") }}
+      {{ $default_filter_tag = $default_filter_tag_raw }}
+    {{ end }}
+    {{/* Local addition: when the default filter is "All" and the list is
+         capped, cap that default view too, via js-default-cap below. */}}
+    {{ if and $is_capped (eq $default_filter_tag_raw "*") }}
+      {{ $default_filter_tag = ".js-default-cap" }}
+    {{ end }}
+
+    <span class="d-none default-project-filter">{{ $default_filter_tag }}</span>
+
+    <div class="project-toolbar">
+      <div class="project-filters">
+        <div class="btn-toolbar {{if eq $columns "1"}}d-flex justify-content-center{{end}}">
+          <div class="btn-group flex-wrap">
+            {{ range $idx, $item := $st.Params.content.filter_button }}
+              {{/* Parse filter tag from front matter in the form of either tag name or CSS class name. */}}
+              {{ $data_filter := printf ".js-id-%s" (replace .tag " " "-") }}
+              {{ if or (eq (substr .tag 0 1) "*") (eq (substr .tag 0 1) ".") }}
+                {{ $data_filter = .tag }}
+              {{ end }}
+              {{/* Local addition: the "All" button still shows only the
+                   capped teaser; category buttons reveal their full list. */}}
+              {{ if and $is_capped (eq .tag "*") }}
+                {{ $data_filter = ".js-default-cap" }}
+              {{ end }}
+              <a href="#" data-filter="{{ $data_filter | safeHTMLAttr }}" class="btn btn-primary btn-lg{{ if eq $idx $filter_default }} active{{ end }}">{{ .name }}</a>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+    </div>
+  {{ end }}
+
+  <div class="{{ if or $has_filter_toolbar (in (slice "masonry" 3) $view) }}isotope projects-container{{end}} {{if in (slice "masonry" 3) $view}}js-layout-masonry{{else}}row js-layout-row{{end}} {{ if eq $view "showcase" }}project-showcase{{end}}">
+
+    {{ range $index, $item := $query }}
+      {{ $js_tag_classes := delimit (apply (apply $item.Params.tags "replace" "." " " "-") "printf" "js-id-%s" ".") " " }}
+        {{/* Local addition: mark the N most recent items so the default
+             "All" filter can show just the capped teaser (see above). */}}
+        {{ if and $has_filter_toolbar $is_capped (lt $index $items_count) }}
+          {{ $js_tag_classes = printf "%s js-default-cap" $js_tag_classes }}
+        {{ end }}
+        {{ if in (slice "masonry" 3) $view }}
+          <div class="project-card project-item isotope-item {{ $js_tag_classes | safeHTMLAttr }}">
+        {{else}}
+          <div class="col-12 isotope-item {{ $js_tag_classes | safeHTMLAttr }}">
+        {{end}}
+        {{ partial "functions/render_view" (dict "page" $st "item" . "view" $view "index" $index) }}
+      </div>
+    {{end}}
+
+  </div>
+
+  {{ if $is_capped }}
+    {{ $archive_page := "" }}
+    {{ with $st.Params.content.page_type }}
+      {{ $archive_page = site.GetPage "Section" . }}
+    {{ end }}
+    {{ with $st.Params.content.filters.folders }}
+      {{ $archive_page = site.GetPage "Section" (index . 0) }}
+    {{ end }}
+    <div class="see-all">
+      <a href="{{ if $archive_page }}{{ $archive_page.RelPermalink }}{{ else }}#{{ end }}">
+        {{ $st.Params.content.archive_text | default "See older" }}
+        <i class="fas fa-angle-right"></i>
+      </a>
+    </div>
+  {{ end }}
+
+</div>

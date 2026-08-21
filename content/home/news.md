@@ -7,6 +7,9 @@ title: News
 subtitle: ''
 content:
   page_type: news
+  filters:
+    exclude_tags:
+      - Blog
   filter_default: 0
   filter_button:
     - name: All

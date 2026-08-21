@@ -1,27 +1,18 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-![Workflow Status](https://github.com/simongravelle/simongravelle.github.io/actions/workflows/gh-pages.yml/badge.svg)
+![Workflow Status](https://github.com/AnHan42/AnHan42.github.io/actions/workflows/gh-pages.yml/badge.svg)
 
-# Academic template
+# Anika Hannemann, personal academic site
 
-A simple academic template that is easy to deploy on GitHub page, and relatively
-easy to customize using css. You can find the [live](https://simongravelle.github.io/)
-version, and my resume [here](https://simongravelle.github.io/files/resume/resume-simon-gravelle.pdf).
-
-## Automatic update of the publication list
-
-The list of publications is updated automatically from Google Scholar using
-the [scholar-collector](https://github.com/simongravelle/scholar-collector).
-
-## Overview
-
-[![image](static/img/Screenshot01.png)](https://simongravelle.github.io/)
-
-[![image](static/img/Screenshot02.png)](https://simongravelle.github.io/)
+Source for my personal academic website, built with [Hugo](https://gohugo.io/)
+and deployed automatically to GitHub Pages. You can find the live site at
+[anhan42.github.io](https://anhan42.github.io/).
 
 ## Credit
 
-This template was originally taken from [wowchemy](https://wowchemy.com/), with
-some custom CSS adapted from [nickballousite](https://github.com/nballou) webpage.
+This site is built on the [wowchemy](https://wowchemy.com/) academic Hugo
+theme, via a template adapted by [Simon Gravelle](https://github.com/simongravelle/simongravelle.github.io),
+which also includes custom CSS originally from [nickballousite](https://github.com/nballou).
+I have further customised the content, layout, and styling for my own use.
 
 ## How to build locally
 
@@ -36,9 +27,8 @@ hugo server
 After cloning this repository:
 
 - add your own content in the [content](content/) folder,
-- modify the custom css script in [assets/scss/custom.scss](assets/scss/custom.scss),
-- enter your publications in [content/publication/](content/publication/).
-- replace Simon Gravelle by your name in [layouts/partials/widgets/about.html](layouts/partials/widgets/about.html).
+- modify the custom CSS in [assets/scss/custom.scss](assets/scss/custom.scss),
+- enter publications in [content/publications/](content/publications/).
 
 ## How to deploy
 
@@ -46,3 +36,7 @@ In Settings, Pages, select:
 
 - Deploy from a branch as Source
 - gh-pages, `/(root)` as Branch
+
+Pushing to `main` triggers the GitHub Action in
+[.github/workflows/gh-pages.yml](.github/workflows/gh-pages.yml), which builds
+the site with Hugo and pushes the result to the `gh-pages` branch.

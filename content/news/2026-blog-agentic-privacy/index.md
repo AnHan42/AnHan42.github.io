@@ -12,7 +12,6 @@ tags:
 - Agentic AI
 - AI Privacy
 title: "Agentic AI and the privacy problems we have not solved yet"
-type: "news"
 layout: "single"
 ---
 

@@ -10,6 +10,9 @@ main:
   - name: News
     url: '#news'
     weight: 20
+  - name: Open Theses
+    url: '#theses'
+    weight: 22
   - name: Blog
     url: '#blog'
     weight: 30
